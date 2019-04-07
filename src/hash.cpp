@@ -37,7 +37,7 @@ uint64_t HashString(const std::string &str) {
 	if (!PrimesInitialised) {
 		InitPrimes();
 	}
-	constexpr uint64_t PRIME_FACTOR = 17;
+	constexpr uint64_t PRIME_FACTOR = 1;
 	uint64_t acc = 0;
 	std::size_t len = 0;
 	for (const unsigned char chr : str) {
