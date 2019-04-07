@@ -30,7 +30,11 @@ int main(int argc, const char **argv) {
 	inputFile.close();
 
 	// Construct and populate table
+#ifndef USE_DYNAMIC
 	StaticHashTable<std::string, std::size_t> table(HashString, size);
+#else
+	DynamicHashTable<std::string, std::size_t> table(HashString, size);
+#endif
 	for (const std::string &line : lines) {
 		table.put(line, line.size());
 	}
