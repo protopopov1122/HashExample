@@ -5,6 +5,7 @@
 #include <memory>
 #include <functional>
 #include <exception>
+#include <vector>
 
 template <typename K, typename V>
 class HashTable {
@@ -14,6 +15,7 @@ class HashTable {
 	virtual const V &get(const K&) const = 0;
 	virtual void put(const K &, const V &) = 0;
 	virtual std::size_t getCollisions() const = 0;
+	virtual void getLayout(std::vector<uint32_t> &) const = 0;
 
 	class KeyNotFound : public std::exception {
 	 public:

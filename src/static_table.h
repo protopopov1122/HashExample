@@ -112,6 +112,16 @@ class StaticHashTable : public HashTable<K, V> {
 	std::size_t getCollisions() const override {
 		return this->collisions;
 	}
+	
+	void getLayout(std::vector<uint32_t> &layout) const override {
+		for (std::size_t i = 0; i < this->size; i++) {
+			if (this->table[i].not_empty) {
+				layout.push_back(1);
+			} else {
+				layout.push_back(0);
+			}
+		}
+	}
 };
 
 #endif

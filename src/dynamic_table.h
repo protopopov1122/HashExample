@@ -93,6 +93,21 @@ class DynamicHashTable : public HashTable<K, V> {
 	std::size_t getCollisions() const override {
 		return this->collisions;
 	}
+	
+	void getLayout(std::vector<uint32_t> &layout) const override {
+		layout.clear();
+		for (std::size_t i = 0; i < this->size; i++) {
+			const Entry *entry = &this->entries[i];
+			uint32_t count = 0;
+			if (entry->not_empty) {
+				count = 1;
+				while ((entry = entry->next.get()) != nullptr) {
+					count++;
+				}
+			}
+			layout.push_back(count);
+		}
+	}
 };
 
 #endif
